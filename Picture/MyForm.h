@@ -208,6 +208,7 @@ namespace Project1 {
 			// 
 			// button3
 			// 
+			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->button3->Location = System::Drawing::Point(497, 427);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
@@ -260,13 +261,13 @@ namespace Project1 {
 		void ColorEllipse(int CorX1, int CorY1, int index, int color)         //Modelation of ellipses
 		{
 
+			Color Yellow = Color::FromArgb(255, Color::Yellow);
+			Color Red = Color::FromArgb(255, Color::Red);
 			Pen^ EllipsePen = gcnew Pen(Color::Lime, 2);
-			if (color % 3 == 0)
-				Pen^ EllipsePen = gcnew Pen(Color::Lime, 2);
 			if (color % 3 == 1)
-				Pen^ EllipsePen = gcnew Pen(Color::Yellow, 2);
+				EllipsePen->Color = Yellow;
 			if (color % 3 == 2)
-				Pen^ EllipsePen = gcnew Pen(Color::Red, 2);
+				EllipsePen->Color = Red;
 			Graphics^ c = pictureBox1->CreateGraphics();
 			Color White = Color::FromArgb(255, Color::White);
 			SolidBrush^ EllipseBrush = gcnew SolidBrush(White);
@@ -283,6 +284,22 @@ namespace Project1 {
 			SolidBrush^ RectangleBrush = gcnew SolidBrush(Black);
 			r->FillRectangle(RectangleBrush, CorX1, CorY1, index, index);
 
+		}
+
+		void DebugInfo(bool trigger)
+		{
+			textBox1->Visible = trigger;
+			label1->Visible = trigger;
+			textBox2->Enabled = trigger;
+			textBox2->Visible = trigger;
+			label2->Visible = trigger;
+			textBox3->Enabled = trigger;
+			textBox3->Visible = trigger;
+			label3->Visible = trigger;
+			textBox4->Enabled = trigger;
+			textBox4->Visible = trigger;
+			label4->Visible = trigger;
+			debinfo = trigger;
 		}
 
 
@@ -433,27 +450,13 @@ namespace Project1 {
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		if (debinfo == false)
 		{
-			textBox1->Visible = true;
-			label1->Visible = true;
-			textBox2->Visible = true;
-			label2->Visible = true;
-			textBox3->Visible = true;
-			label3->Visible = true;
-			textBox4->Visible = true;
-			label4->Visible = true;
-			debinfo = true;
+
+			DebugInfo(true);
 		}
 		else
 		{
-			textBox1->Visible = false;
-			label1->Visible = false;
-			textBox2->Visible = false;
-			label2->Visible = false;
-			textBox3->Visible = false;
-			label3->Visible = false;
-			textBox4->Visible = false;
-			label4->Visible = false;
-			debinfo = false;
+			
+			DebugInfo(false);
 		}
 	}
 	};
